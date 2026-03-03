@@ -9,9 +9,14 @@ import (
 
 func main() {
 
-	fmt.Println("Listening on 127.0.0.1")
+	fmt.Println("Listening on 127.0.0.1:8080")
 
 	indexHandler := func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/" {
+			http.NotFound(w, r)
+			return
+		}
+
 		log.Println("INFO: ", "GET /")
 		io.WriteString(w, "hello, go!")
 	}
