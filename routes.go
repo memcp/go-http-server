@@ -8,9 +8,9 @@ import (
 func setupRoutes() *http.ServeMux {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/dog", dogHandler)
-	mux.HandleFunc("/cat", catHandler)
-	mux.HandleFunc("/", notFoundHandler)
+	mux.HandleFunc("/dog", logRequest(dogHandler))
+	mux.HandleFunc("/cat", logRequest(catHandler))
+	mux.HandleFunc("/", logRequest(notFoundHandler))
 
 	return mux
 }
